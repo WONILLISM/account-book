@@ -11,7 +11,11 @@ interface ThemeConfigProps {
 }
 
 export default function ThemeConfig({ children }: ThemeConfigProps) {
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
   return (
     <StyledEngineProvider>

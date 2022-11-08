@@ -3,6 +3,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 
 import MainLayout from './layouts/MainLayout';
+import BankbookDetail from './pages/BankbookDetail';
 import DashboardApp from './pages/DashboardApp';
 import Login from './pages/Login';
 
@@ -14,6 +15,7 @@ export default function Router() {
       children: [
         { path: '', element: <Navigate to='/dashboard/app' replace /> },
         { path: 'app', element: <DashboardApp /> },
+        { path: 'bankbook/:id', element: <BankbookDetail /> },
       ],
     },
     {
