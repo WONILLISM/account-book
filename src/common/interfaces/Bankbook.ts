@@ -1,4 +1,5 @@
 export interface BankbookTag {
+  id: number;
   title: string;
 }
 

@@ -16,6 +16,8 @@ import AddIcon from '@mui/icons-material/Add';
 import { Bankbook } from '../common/interfaces/Bankbook';
 import { useNavigate } from 'react-router-dom';
 import { BankbookData } from '../utils/bankbookdata';
+import AppAddBankbookModal from '../components/_dashboard/app/AppAddBankbookModal';
+import { SubmitHandler } from 'react-hook-form';
 
 const DashboardTitleBoxStyle = styled(Box)({
   display: 'flex',
@@ -26,13 +28,23 @@ const DashboardTitleBoxStyle = styled(Box)({
 const DashboardApp = () => {
   const navigate = useNavigate();
   const [books, setBooks] = useState<Bankbook[]>(BankbookData);
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false);
 
-  const handleBankbookAddClick = (bankbookInfo: Bankbook) => {
-    setBooks([...books, { ...bankbookInfo }]);
+  const handleAddBankBookSubmit: SubmitHandler<Bankbook> = (data) => {
+    console.log(data);
+    setBooks([...books, data]);
   };
 
   const handleBankbookCardClick = (id: number) => {
     navigate(`/dashboard/bankbook/${id}`);
+  };
+
+  const handleAddBankbookClick = () => {
+    setOpenAddModal(true);
+  };
+
+  const handleAddBankbookModalClose = () => {
+    setOpenAddModal(false);
   };
 
   return (
@@ -40,19 +52,15 @@ const DashboardApp = () => {
       <Container maxWidth='xl'>
         <DashboardTitleBoxStyle>
           <Typography variant='h4'>유진이의 텅장</Typography>
-          <IconButton
-            onClick={() => {
-              handleBankbookAddClick({
-                id: BankbookData.length,
-                title: '텅장',
-                balance: 0,
-                tags: [{ title: '가스비' }],
-              });
-            }}
-          >
+          <IconButton onClick={handleAddBankbookClick}>
             <AddIcon />
           </IconButton>
         </DashboardTitleBoxStyle>
+        <AppAddBankbookModal
+          open={openAddModal}
+          onClose={handleAddBankbookModalClose}
+          onSubmit={handleAddBankBookSubmit}
+        />
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Box

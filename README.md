@@ -2,9 +2,8 @@
 
 ## models
 + 통장
-  + 통장 id
-  + 통장 이름
-  + 통장 잔고
-  + 입금
-  + 출금
-  + 태그
+  + 통장 id : number
+  + 은행 이름 : string
+  + 통장 이름 : string
+  + 통장 잔고 : number
+  + 태그 : Array({id:number, title:string})
