@@ -8,8 +8,9 @@ import {
   styled,
   TextField,
 } from '@mui/material';
-import { Bankbook, BankbookTag } from '../../../common/interfaces/Bankbook';
+import { Bankbook, DefaultTag } from '../../../common/interfaces/Bankbook';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { defaultTag } from '../../../utils/bankbookdata';
 
 const TagsItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -27,18 +28,7 @@ const AppAddBankbookModal = ({
   onClose,
   onSubmit,
 }: AppAddBankbookModalProps) => {
-  const [defaultTags, setDefaultTags] = useState<
-    {
-      id: number;
-      title: string;
-      show: boolean;
-    }[]
-  >([
-    { id: 0, title: '생활비', show: true },
-    { id: 1, title: '용돈', show: true },
-    { id: 2, title: '기명진', show: true },
-    { id: 3, title: '바보', show: true },
-  ]);
+  const [defaultTags, setDefaultTags] = useState<DefaultTag[]>(defaultTag);
   const { control, register, handleSubmit } = useForm<Bankbook>({
     defaultValues: { title: '', balance: 0, tags: [] },
   });
@@ -96,7 +86,7 @@ const AppAddBankbookModal = ({
                 {defaultTags.map((tag, tagIdx) => {
                   return (
                     <>
-                      {tag.show && (
+                      {tag.isDisplay && (
                         <TagsItem>
                           <Chip
                             label={tag.title}

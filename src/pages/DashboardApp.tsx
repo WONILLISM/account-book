@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import { Bankbook } from '../common/interfaces/Bankbook';
 import { useNavigate } from 'react-router-dom';
-import { BankbookData } from '../utils/bankbookdata';
+import { bankbookData } from '../utils/bankbookdata';
 import AppAddBankbookModal from '../components/_dashboard/app/AppAddBankbookModal';
 import { SubmitHandler } from 'react-hook-form';
 
@@ -27,7 +27,7 @@ const DashboardTitleBoxStyle = styled(Box)({
 
 const DashboardApp = () => {
   const navigate = useNavigate();
-  const [books, setBooks] = useState<Bankbook[]>(BankbookData);
+  const [books, setBooks] = useState<Bankbook[]>(bankbookData);
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
 
   const handleAddBankBookSubmit: SubmitHandler<Bankbook> = (data) => {
@@ -49,7 +49,7 @@ const DashboardApp = () => {
 
   return (
     <Page>
-      <Container maxWidth='xl'>
+      <Container maxWidth='lg'>
         <DashboardTitleBoxStyle>
           <Typography variant='h4'>유진이의 텅장</Typography>
           <IconButton onClick={handleAddBankbookClick}>
