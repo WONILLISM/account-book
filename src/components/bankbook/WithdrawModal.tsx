@@ -9,18 +9,22 @@ import {
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AccountHistory } from '../../common/interfaces/Bankbook';
 
-interface DepositModalProps {
+interface WithdrawModalProps {
   open: boolean;
   onClose: () => void;
-  handleDeposit: (deposit: AccountHistory) => void;
+  handleWithdraw: (deposit: AccountHistory) => void;
 }
 
-const DepositModal = ({ open, onClose, handleDeposit }: DepositModalProps) => {
+const WithdrawModal = ({
+  open,
+  onClose,
+  handleWithdraw,
+}: WithdrawModalProps) => {
   const { control, register, handleSubmit } = useForm<AccountHistory>({
     defaultValues: {
       date: '',
       amount: 0,
-      type: '입금',
+      type: '출금',
       memo: '',
     },
   });
@@ -28,12 +32,12 @@ const DepositModal = ({ open, onClose, handleDeposit }: DepositModalProps) => {
   const onSubmit: SubmitHandler<AccountHistory> = (data: AccountHistory) => {
     console.log(data);
     onClose();
-    handleDeposit(data);
+    handleWithdraw(data);
   };
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>입금</DialogTitle>
+      <DialogTitle>출금</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -52,4 +56,4 @@ const DepositModal = ({ open, onClose, handleDeposit }: DepositModalProps) => {
   );
 };
 
-export default DepositModal;
+export default WithdrawModal;

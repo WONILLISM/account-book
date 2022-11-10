@@ -12,9 +12,8 @@ export interface Tag {
 export interface AccountHistory {
   date: string;
   amount: number;
-  title: string;
-  type?: '입금' | '출금' | '송금';
-  memo?: string;
+  type: '입금' | '출금';
+  memo: string;
 }
 
 export interface Bankbook {

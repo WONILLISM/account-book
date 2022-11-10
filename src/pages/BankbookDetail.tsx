@@ -1,9 +1,11 @@
-import { Button, Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
+
+import { Button, Container, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { Bankbook } from '../common/interfaces/Bankbook';
+import { AccountHistory, Bankbook } from '../common/interfaces/Bankbook';
 import { TotalBankbook } from '../components/bankbook';
-import AccountHistory from '../components/bankbook/AccountHistory';
+import AccountHistoryList from '../components/bankbook/AccountHistoryList';
 import Page from '../components/Page';
 import { bankbookData } from '../utils/bankbookdata';
 
@@ -20,21 +22,49 @@ const BankbookDetail = () => {
     description: '',
   });
 
+  const handleDepositButtonClick = (deposit: AccountHistory) => {
+    const curBalance = data.balance;
+    let curAccountHistory = _.cloneDeep(data.accountHistory);
+    curAccountHistory.push(deposit);
+
+    setData({
+      ...data,
+      balance: curBalance + deposit.amount,
+      accountHistory: curAccountHistory,
+    });
+  };
+
+  const handleWithdrawButtonClick = (withdraw: AccountHistory) => {
+    const curBalance = data.balance;
+    let curAccountHistory = _.cloneDeep(data.accountHistory);
+    curAccountHistory.push(withdraw);
+
+    setData({
+      ...data,
+      balance: curBalance - withdraw.amount,
+      accountHistory: curAccountHistory,
+    });
+  };
+
   useEffect(() => {
     if (id) {
       setData(bankbookData[Number(id)]);
     }
   }, []);
-  console.log(data);
+
   return (
     <Page>
       <Container maxWidth='lg'>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TotalBankbook data={data} />
+            <TotalBankbook
+              data={data}
+              handleDeposit={handleDepositButtonClick}
+              handleWithdraw={handleWithdrawButtonClick}
+            />
           </Grid>
           <Grid item xs={12}>
-            <AccountHistory />
+            <AccountHistoryList data={data.accountHistory} />
           </Grid>
         </Grid>
       </Container>
