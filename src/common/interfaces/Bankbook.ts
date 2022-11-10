@@ -14,6 +14,7 @@ export interface AccountHistory {
   amount: number;
   type: '입금' | '출금';
   memo: string;
+  tags: Tag[];
 }
 
 export interface Bankbook {

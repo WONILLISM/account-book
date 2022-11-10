@@ -27,6 +27,11 @@ const AccountHistoryList = ({ data }: AccountHistoryProps) => {
               <div>{it.date}</div>
               <div>{it.amount}</div>
               <div>{it.memo}</div>
+              <div>
+                {it.tags.map((tag, tagidx) => (
+                  <>{tag.title} </>
+                ))}
+              </div>
             </div>
           ))}
         </div>

@@ -26,6 +26,7 @@ const WithdrawModal = ({
       amount: 0,
       type: '출금',
       memo: '',
+      tags: [],
     },
   });
 

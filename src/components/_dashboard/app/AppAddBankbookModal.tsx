@@ -64,7 +64,7 @@ const AppAddBankbookModal = ({
                           setDefaultTags(
                             defaultTags.map((it) => {
                               return it.title === tag.title
-                                ? { ...it, show: true }
+                                ? { ...it, isDisplay: true }
                                 : it;
                             }),
                           );
@@ -94,7 +94,7 @@ const AppAddBankbookModal = ({
                               setDefaultTags(
                                 defaultTags.map((it) =>
                                   it.id === tagIdx
-                                    ? { ...it, show: false }
+                                    ? { ...it, isDisplay: false }
                                     : it,
                                 ),
                               );
