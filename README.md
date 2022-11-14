@@ -7,3 +7,5 @@
   + 통장 이름 : string
   + 통장 잔고 : number
   + 태그 : Array({id:number, title:string})
+
+<!-- http://152.70.88.101:3000/api/accounts -->
