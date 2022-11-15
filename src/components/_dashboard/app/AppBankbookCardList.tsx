@@ -11,11 +11,14 @@ import AppBankbookCard from './AppBankbookCard';
 
 const ContentStyle = styled('div')({
   display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   gap: 12,
 
   padding: '0px 24px 24px 24px',
+  // margin: '0px 24px 24px 24px',
 
-  overflowX: 'auto',
+  // overflowX: 'auto',
 });
 
 const HeaderStyle = styled('div')({
@@ -44,11 +47,6 @@ const AppBankbookCardList = () => {
 
   const handleBankbookCardClick = (id: number) => {
     navigate(`/dashboard/bankbook/${id}`);
-  };
-
-  const handleAddBankBookSubmit: SubmitHandler<Bankbook> = (info) => {
-    console.log(info);
-    // setBooks([...books, info]);
   };
 
   const handleAddBankbookClick = () => {
@@ -86,7 +84,6 @@ const AppBankbookCardList = () => {
       <AppAddBankbookModal
         open={openAddModal}
         onClose={handleAddBankbookModalClose}
-        onSubmit={handleAddBankBookSubmit}
       />
     </RootStyle>
   );

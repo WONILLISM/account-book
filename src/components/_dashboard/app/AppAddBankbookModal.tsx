@@ -11,6 +11,7 @@ import {
 import { Bankbook, DefaultTag } from '../../../common/interfaces/Bankbook';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { defaultTag } from '../../../utils/bankbookdata';
+import { useAccounts } from '../../../common/api/useAccounts';
 
 const TagsItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -20,24 +21,31 @@ const TagsItem = styled('li')(({ theme }) => ({
 interface AppAddBankbookModalProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (result: Bankbook) => {};
 }
 
-const AppAddBankbookModal = ({
-  open,
-  onClose,
-  onSubmit,
-}: AppAddBankbookModalProps) => {
+const AppAddBankbookModal = ({ open, onClose }: AppAddBankbookModalProps) => {
   const [defaultTags, setDefaultTags] = useState<DefaultTag[]>(defaultTag);
   const { control, register, handleSubmit } = useForm<Bankbook>({
-    defaultValues: { title: '', balance: 0, tags: [] },
+    defaultValues: {
+      id: -1,
+      title: '',
+      balance: 0,
+      tags: [],
+      accountName: '',
+      accountNumber: '',
+      accountHistory: [],
+      description: '',
+    },
   });
 
   const { fields, append, remove } = useFieldArray({ name: 'tags', control });
 
-  // const onSubmit: SubmitHandler<Bankbook> = (data) => {
-  //   console.log(data);
-  // };
+  const { mutate } = useAccounts().create;
+
+  const onSubmit: SubmitHandler<Bankbook> = (data: Bankbook) => {
+    console.log(data);
+    mutate(data);
+  };
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -47,6 +55,9 @@ const AppAddBankbookModal = ({
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <TextField label='통장 이름' {...register('title')} />
             <TextField label='잔액' {...register('balance')} />
+            <TextField label='은행' {...register('accountName')} />
+            <TextField label='계좌번호' {...register('accountNumber')} />
+            <TextField label='메모' {...register('description')} multiline />
             <div>
               <div
                 style={{
