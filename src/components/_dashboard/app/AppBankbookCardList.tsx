@@ -11,14 +11,14 @@ import AppBankbookCard from './AppBankbookCard';
 
 const ContentStyle = styled('div')({
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  // flexDirection: 'column',
+  // alignItems: 'center',
   gap: 12,
 
   padding: '0px 24px 24px 24px',
   // margin: '0px 24px 24px 24px',
 
-  // overflowX: 'auto',
+  overflowX: 'auto',
 });
 
 const HeaderStyle = styled('div')({

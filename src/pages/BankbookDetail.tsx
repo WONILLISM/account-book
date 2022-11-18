@@ -8,6 +8,7 @@ import { TotalBankbook } from '../components/bankbook';
 import AccountHistoryList from '../components/bankbook/AccountHistoryList';
 import Page from '../components/Page';
 import { bankbookData } from '../utils/bankbookdata';
+import BankbookDetailContainer from '../components/bankbook/BankbookDetailContainer';
 
 const BankbookDetail = () => {
   const { id } = useParams();
@@ -46,28 +47,11 @@ const BankbookDetail = () => {
     });
   };
 
-  useEffect(() => {
-    if (id) {
-      setData(bankbookData[Number(id)]);
-    }
-  }, []);
+  if (!id) return <span>not found page</span>;
 
   return (
     <Page>
-      <Container maxWidth='lg'>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TotalBankbook
-              data={data}
-              handleDeposit={handleDepositButtonClick}
-              handleWithdraw={handleWithdrawButtonClick}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <AccountHistoryList data={data.accountHistory} />
-          </Grid>
-        </Grid>
-      </Container>
+      <BankbookDetailContainer id={Number(id)} />
     </Page>
   );
 };

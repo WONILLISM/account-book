@@ -12,7 +12,7 @@ import { AccountHistory } from '../../common/interfaces/Bankbook';
 interface WithdrawModalProps {
   open: boolean;
   onClose: () => void;
-  handleWithdraw: (deposit: AccountHistory) => void;
+  handleWithdraw?: (deposit: AccountHistory) => void;
 }
 
 const WithdrawModal = ({
@@ -33,7 +33,7 @@ const WithdrawModal = ({
   const onSubmit: SubmitHandler<AccountHistory> = (data: AccountHistory) => {
     console.log(data);
     onClose();
-    handleWithdraw(data);
+    // handleWithdraw(data);
   };
 
   return (

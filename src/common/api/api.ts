@@ -10,6 +10,11 @@ export const getAllAccounts = async () => {
   return response.data;
 };
 
+export const getAccount = async (id: number) => {
+  const response = await apiClient.get(`/accounts/${id}`);
+  return response.data;
+};
+
 export const createAccount = async (account: Bankbook) => {
   const response = await apiClient.post('/accounts', account);
   return response.data;

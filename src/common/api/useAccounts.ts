@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { Bankbook } from '../interfaces/Bankbook';
-import { createAccount, getAllAccounts } from './api';
+import { createAccount, getAccount, getAllAccounts } from './api';
 
 export const useAccounts = () => {
   const queryClient = useQueryClient();

@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import { Button, styled } from '@mui/material';
+import { Button, styled, Typography } from '@mui/material';
 import { AccountHistory, Bankbook } from '../../common/interfaces/Bankbook';
 import DepositModal from './DepositModal';
 import WithdrawModal from './WithdrawModal';
 
+const ContentStyle = styled('div')({});
+
+const HeaderStyle = styled('div')({
+  padding: '20px 0px',
+});
+
 const RootStyle = styled('div')({
-  border: '1px solid white',
+  // borderRadius: 24,
+  // backgroundColor: '#333333',
 });
 
 interface TotalBankbookProps {
   data: Bankbook;
-  handleDeposit: (deposit: AccountHistory) => void;
-  handleWithdraw: (withdraw: AccountHistory) => void;
 }
 
-const TotalBankbook = ({
-  data,
-  handleDeposit,
-  handleWithdraw,
-}: TotalBankbookProps) => {
+const TotalBankbook = ({ data }: TotalBankbookProps) => {
   const [openDeposit, setOpenDeposit] = useState<boolean>(false);
   const [openWithdraw, setOpenWithdraw] = useState<boolean>(false);
 
@@ -40,11 +41,17 @@ const TotalBankbook = ({
 
   return (
     <RootStyle>
-      <div>
-        <div>
+      <HeaderStyle>
+        <Typography variant='h5'>{data.title}</Typography>
+        <Typography variant='subtitle2'>{data.description}</Typography>
+      </HeaderStyle>
+      <ContentStyle>
+        <Typography variant='subtitle1'>
           {data.accountName} {data.accountNumber}
-        </div>
-        <div>{data.balance}</div>
+        </Typography>
+        <Typography variant='h4'>
+          {Number(data.balance).toLocaleString()}원
+        </Typography>
         <div>
           <Button type='button' onClick={handleDepositModalOpen}>
             입금
@@ -52,7 +59,7 @@ const TotalBankbook = ({
           <DepositModal
             open={openDeposit}
             onClose={handleDepositModalClose}
-            handleDeposit={handleDeposit}
+            // handleDeposit={handleDeposit}
           />
           <Button type='button' onClick={handleWithdrawModalOpen}>
             출금
@@ -60,10 +67,10 @@ const TotalBankbook = ({
           <WithdrawModal
             open={openWithdraw}
             onClose={handleWithdrawModalClose}
-            handleWithdraw={handleWithdraw}
+            // handleWithdraw={handleWithdraw}
           />
         </div>
-      </div>
+      </ContentStyle>
     </RootStyle>
   );
 };

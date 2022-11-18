@@ -20,7 +20,7 @@ const TagsItem = styled('li')(({ theme }) => ({
 interface DepositModalProps {
   open: boolean;
   onClose: () => void;
-  handleDeposit: (deposit: AccountHistory) => void;
+  handleDeposit?: (deposit: AccountHistory) => void;
 }
 
 const DepositModal = ({ open, onClose, handleDeposit }: DepositModalProps) => {
@@ -35,9 +35,9 @@ const DepositModal = ({ open, onClose, handleDeposit }: DepositModalProps) => {
   });
 
   const onSubmit: SubmitHandler<AccountHistory> = (data: AccountHistory) => {
-    // console.log(data);
+    console.log(data);
     onClose();
-    handleDeposit(data);
+    // handleDeposit(data);
   };
 
   const { fields, append, remove } = useFieldArray({ name: 'tags', control });
