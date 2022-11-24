@@ -23,6 +23,7 @@ export default function GlobalStyles() {
         body: {
           width: '100%',
           height: '100%',
+          backgroundColor: '#e7ebf0',
         },
         '#root': {
           width: '100%',

@@ -35,7 +35,7 @@ const RootStyle = styled('div')({
 
   borderRadius: 24,
 
-  backgroundColor: '#333333',
+  backgroundColor: '#FFFFFF',
 });
 
 const AppBankbookCardList = () => {

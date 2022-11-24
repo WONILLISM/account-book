@@ -12,9 +12,7 @@ interface ThemeConfigProps {
 
 export default function ThemeConfig({ children }: ThemeConfigProps) {
   const theme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
+    palette: {},
   });
 
   return (

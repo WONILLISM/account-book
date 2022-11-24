@@ -10,10 +10,7 @@ const HeaderStyle = styled('div')({
   padding: '20px 0px',
 });
 
-const RootStyle = styled('div')({
-  // borderRadius: 24,
-  // backgroundColor: '#333333',
-});
+const RootStyle = styled('div')({});
 
 interface TotalBankbookProps {
   data: Bankbook;
@@ -52,23 +49,9 @@ const TotalBankbook = ({ data }: TotalBankbookProps) => {
         <Typography variant='h4'>
           {Number(data.balance).toLocaleString()}원
         </Typography>
-        <div>
-          <Button type='button' onClick={handleDepositModalOpen}>
-            입금
-          </Button>
-          <DepositModal
-            open={openDeposit}
-            onClose={handleDepositModalClose}
-            // handleDeposit={handleDeposit}
-          />
-          <Button type='button' onClick={handleWithdrawModalOpen}>
-            출금
-          </Button>
-          <WithdrawModal
-            open={openWithdraw}
-            onClose={handleWithdrawModalClose}
-            // handleWithdraw={handleWithdraw}
-          />
+        <div style={{ marginTop: '20px' }}>
+          <DepositModal id={data.id} />
+          <WithdrawModal id={data.id} />
         </div>
       </ContentStyle>
     </RootStyle>

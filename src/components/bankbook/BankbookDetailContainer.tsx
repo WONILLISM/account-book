@@ -5,8 +5,8 @@ import AccountHistoryList from './AccountHistoryList';
 import TotalBankbook from './TotalBankbook';
 
 const RootStyle = styled('div')({
-  backgroundColor: '#333333',
   padding: '0px 24px',
+  backgroundColor: '#ffffff',
 });
 
 interface BankbookDetailContainerProps {
@@ -30,9 +30,7 @@ const BankbookDetailContainer = ({ id }: BankbookDetailContainerProps) => {
             <TotalBankbook data={data} />
           </Grid>
           <Grid item xs={12}>
-            {/* <AccountHistoryList
-          // data={data.accountHistory}
-          /> */}
+            <AccountHistoryList id={data.id} />
           </Grid>
         </Grid>
       </RootStyle>

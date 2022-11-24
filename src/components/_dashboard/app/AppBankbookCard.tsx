@@ -22,6 +22,9 @@ const RootStyle = styled(Card)(({ theme }) => ({
   minWidth: '300px',
 
   borderRadius: 24,
+
+  backgroundColor: theme.palette.primary.main,
+  color: '#FFFFFF',
 }));
 
 interface AppBankbookCardProps {
