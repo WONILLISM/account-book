@@ -24,7 +24,7 @@ const SubContentStyle = styled('div')({
   padding: '8px 12px 16px 12px',
 
   '& .memo': {},
-  '& .tags': {},
+  '& .tags': { display: 'flex', gap: '4px', flexWrap: 'wrap' },
 });
 
 const ContentStyle = styled('div')({
@@ -42,6 +42,7 @@ const HeaderStyle = styled('div')({
 const RootStyle = styled('div')({
   display: 'flex',
   flexDirection: 'column',
+  borderBottom: '1px solid #AAAAAA',
   // padding: '20px',
 });
 

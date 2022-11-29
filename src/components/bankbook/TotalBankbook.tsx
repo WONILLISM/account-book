@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button, styled, Typography } from '@mui/material';
-import { AccountHistory, Bankbook } from '../../common/interfaces/Bankbook';
+import { styled, Typography } from '@mui/material';
 import DepositModal from './DepositModal';
 import WithdrawModal from './WithdrawModal';
+import { useAccount } from '../../common/api/useAccount';
 
 const ContentStyle = styled('div')({});
 
@@ -13,10 +13,12 @@ const HeaderStyle = styled('div')({
 const RootStyle = styled('div')({});
 
 interface TotalBankbookProps {
-  data: Bankbook;
+  id: number;
 }
 
-const TotalBankbook = ({ data }: TotalBankbookProps) => {
+const TotalBankbook = ({ id }: TotalBankbookProps) => {
+  const { data, isLoading, isError, error } = useAccount(id).account;
+
   const [openDeposit, setOpenDeposit] = useState<boolean>(false);
   const [openWithdraw, setOpenWithdraw] = useState<boolean>(false);
 
@@ -36,6 +38,12 @@ const TotalBankbook = ({ data }: TotalBankbookProps) => {
     setOpenWithdraw(false);
   };
 
+  if (isLoading) return <span>Loading...</span>;
+
+  if (isError) return <span>error!! : {error.message}</span>;
+
+  if (!data) return <span>not data</span>;
+
   return (
     <RootStyle>
       <HeaderStyle>
@@ -49,7 +57,7 @@ const TotalBankbook = ({ data }: TotalBankbookProps) => {
         <Typography variant='h4'>
           {Number(data.balance).toLocaleString()}원
         </Typography>
-        <div style={{ marginTop: '20px' }}>
+        <div style={{ marginTop: '20px', display: 'flex', gap: '16px' }}>
           <DepositModal id={data.id} />
           <WithdrawModal id={data.id} />
         </div>

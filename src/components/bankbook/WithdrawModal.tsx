@@ -21,6 +21,11 @@ const defaultHistory: AccountHistory = {
   tags: [],
 };
 
+const ButtonStyle = styled(Button)({
+  minWidth: '100px',
+  fontWeight: 'bold',
+});
+
 const TagsItemStyle = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
   listStyleType: 'none',
@@ -63,9 +68,13 @@ const WithdrawModal = ({ id }: WithdrawModalProps) => {
 
   return (
     <>
-      <Button type='button' onClick={handleWithdrawModalOpen}>
+      <ButtonStyle
+        variant='contained'
+        type='button'
+        onClick={handleWithdrawModalOpen}
+      >
         출금
-      </Button>
+      </ButtonStyle>
       <Dialog
         maxWidth='sm'
         fullWidth
