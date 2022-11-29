@@ -1,11 +1,12 @@
 import React from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import { useAccountHistory } from '../../common/api/useAccountHistory';
+import AccountHistoryItem from './AccountHistoryItem';
 
-const HistoryItemStyle = styled('div')((theme) => ({
+const HistoryItemListStyle = styled('div')({
   display: 'flex',
-  padding: '20px',
-}));
+  flexDirection: 'column',
+});
 
 const ContentStyle = styled('div')({});
 
@@ -35,29 +36,11 @@ const AccountHistoryList = ({ id }: AccountHistoryProps) => {
         </HeaderStyle>
 
         <ContentStyle>
-          <div>
-            {data.map((it, itIdx) => (
-              <HistoryItemStyle
-                sx={{
-                  backgroundColor:
-                    it.type === '입금' ? '#42a5f555' : '#ef535055',
-                }}
-              >
-                <div>{it.date}</div>
-                <div>{it.type}</div>
-                <div>
-                  {it.type === '입금' ? '+' : '-'}
-                  {it.amount}
-                </div>
-                <div>{it.memo}</div>
-                <div>
-                  {it.tags.map((tag, tagidx) => (
-                    <>{tag.title} </>
-                  ))}
-                </div>
-              </HistoryItemStyle>
+          <HistoryItemListStyle>
+            {data.map((item, itemIdx) => (
+              <AccountHistoryItem data={item} />
             ))}
-          </div>
+          </HistoryItemListStyle>
         </ContentStyle>
       </div>
     </RootStyle>

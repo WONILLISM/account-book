@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import { AccountHistory, Bankbook } from '../interfaces/Bankbook';
 
 const apiClient = axios.create({
@@ -16,7 +17,22 @@ export const getAccount = async (id: number) => {
 };
 
 export const createAccount = async (account: Bankbook) => {
-  const response = await apiClient.post('/accounts', account);
+  let initHistory: AccountHistory[] = [];
+  // const today = new Date();
+  const today = moment();
+
+  initHistory.push({
+    date: today.format('YYYY-MM-DD'),
+    amount: account.balance,
+    type: '초기화',
+    memo: '',
+    tags: [],
+  });
+
+  const response = await apiClient.post('/accounts', {
+    ...account,
+    accountHistory: initHistory,
+  });
   return response.data;
 };
 

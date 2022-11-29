@@ -42,7 +42,7 @@ const WithdrawModal = ({ id }: WithdrawModalProps) => {
   });
 
   const onSubmit: SubmitHandler<AccountHistory> = (data: AccountHistory) => {
-    console.log(data);
+    // console.log(data);
     mutate(data);
     handleWithdrawModalClose();
   };

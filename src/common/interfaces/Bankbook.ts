@@ -12,7 +12,7 @@ export interface Tag {
 export interface AccountHistory {
   date: string;
   amount: number;
-  type: '입금' | '출금';
+  type: '입금' | '출금' | '초기화';
   memo: string;
   tags: Tag[];
 }
